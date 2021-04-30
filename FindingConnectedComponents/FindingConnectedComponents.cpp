@@ -90,5 +90,6 @@ int main()
 		InputFile.close();
 		findingConnectedComponent();
 	}
+	system("pause");
 	return 0;
 }

@@ -17,13 +17,6 @@ void init() {
 	}
 }
 
-bool connected() {
-	for (int i = 1; i <= n; i++) {
-		if (!checked[i]) return false;
-	}
-	return true;
-}
-
 void dfs(int i) {
 	checked[i] = true;
 	for (int j = 1; j <= n; j++) {
@@ -48,15 +41,28 @@ void bfs(int i) {
 	}
 }
 
+int numberOfConnectedComponents() {
+	int NumberOfConnectedComponents = 0;
+	for (int i = 1; i <= n; i++) {
+		if (checked[i] == false) {
+			NumberOfConnectedComponents++;
+			bfs(i);
+			//dfs(i)
+		}
+	}
+	return NumberOfConnectedComponents;
+}
+
 void findingArticulationPoint() {
+	int NumberOfConnectedComponents = numberOfConnectedComponents();
 	cout << "Articulation points: ";
 	for (int i = 1; i <= n; i++) {
 		init();
 		checked[i] = true;
-		if (i == 1) dfs(2);
-		else dfs(1);
-		if (!connected()) cout << i << " ";
+		int temp = numberOfConnectedComponents();
+		if (temp > NumberOfConnectedComponents) cout << i << " ";
 	}
+	cout << endl;
 }
 
 
@@ -74,5 +80,6 @@ int main()
 		InputFile.close();
 		findingArticulationPoint();
 	}
+	system("pause");
 	return 0;
 }

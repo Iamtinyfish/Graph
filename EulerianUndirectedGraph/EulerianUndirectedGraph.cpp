@@ -119,5 +119,6 @@ int main()
         }
         eulerianGraph();
     }
+    system("pause");
     return 0;
 }

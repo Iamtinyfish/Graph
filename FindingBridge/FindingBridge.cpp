@@ -17,13 +17,6 @@ void init() {
     }
 }
 
-bool connected() {
-    for (int i = 1; i <= n; i++) {
-        if (!checked[i]) return false;
-    }
-    return true;
-}
-
 void dfs(int i) {
     checked[i] = true;
     for (int j = 1; j <= n; j++) {
@@ -48,45 +41,64 @@ void bfs(int i) {
     }
 }
 
+int numberOfConnectedComponents() {
+    int NumberOfConnectedComponents = 0;
+    for (int i = 1; i <= n; i++) {
+        if (checked[i] == false) {
+            NumberOfConnectedComponents++;
+            bfs(i);
+        }
+    }
+    return NumberOfConnectedComponents;
+}
+
 // directed graph
 void findingBridge() {
-    int temp;
+    int NumberOfConnectedComponents = numberOfConnectedComponents();
+    int temp_edge;
+    int temp_NumberOfConnectedComponents;
     cout << "Bridge edges: ";
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
             if (A[i][j] != 0) {
-                temp = A[i][j];
+                temp_edge = A[i][j];
                 A[i][j] = 0;    //pop 1 edge
                 //Is this edge bridge?
-                bfs(1);
-                if (!connected()) cout << "(" << i << "," << j << ") ; "; // ? yes -> print it
-                //
+                temp_NumberOfConnectedComponents = numberOfConnectedComponents();
+                if (temp_NumberOfConnectedComponents > NumberOfConnectedComponents) 
+                    cout << "\n(" << i << "," << j << ") ; "; // ? yes -> print it
+                
                 init();
-                A[i][j] = temp; // return edge
+                A[i][j] = temp_edge; // return edge
             }
         }
     }
+    cout << endl;
 }
 
 //undirected graph
 /*
 void findingBridge() {
-    int temp;
+    int NumberOfConnectedComponents = numberOfConnectedComponents();
+    int temp_edge;
+    int temp_NumberOfConnectedComponents;
     cout << "Bridge edges: ";
     for (int i = 1; i <= n; i++) {
         for (int j = i+1; j <= n; j++) {
             if (A[i][j] != 0) {
-                temp = A[i][j];
+                temp_edge = A[i][j];
                 A[i][j] = 0; A[j][i] = 0; //pop 1 edge
                 //Is this edge bridge?
-                bfs(1);
-                if (!connected()) cout << "(" << i << "," << j << ") ; "; // ? yes -> print it
-                //
+                temp_NumberOfConnectedComponents = numberOfConnectedComponents();
+                if (temp_NumberOfConnectedComponents > NumberOfConnectedComponents) 
+                    cout << "\n(" << i << "," << j << ") ; "; // ? yes -> print it
+                
                 init();
-                A[i][j] = temp; A[j][i] = temp;// return edge
+                A[i][j] = temp_edge; A[j][i] = temp_edge;// return edge
             }
         }
     }
+    cout << endl;
 }
 */
 
@@ -103,5 +115,6 @@ int main()
         }
         findingBridge();
     }
+    system("pause");
     return 0;
 }

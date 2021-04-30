@@ -41,5 +41,6 @@ int main()
         InputFile.close();
         bfs(1);
     }
+    system("pause");
     return 0;
 }

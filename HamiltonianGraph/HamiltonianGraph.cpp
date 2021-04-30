@@ -70,5 +70,6 @@ int main()
         InputFile >> HeadVetex;
         findHamiltonianCycle(HeadVetex);
     }
+    system("pause");
     return 0;
 }

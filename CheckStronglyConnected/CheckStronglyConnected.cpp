@@ -77,5 +77,6 @@ int main()
         else 
             cout << "Graph is not strongly connected.";
     }
+    system("pause");
     return 0;
 }

@@ -43,5 +43,6 @@ int main() {
 		InputFile.close();
 		dfs(1);
 	}
+	system("pause");
 	return 0;
 }

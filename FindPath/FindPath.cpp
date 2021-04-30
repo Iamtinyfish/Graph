@@ -93,6 +93,6 @@ int main()
         InputFile.close();
         findPath();
     }
-    
+    system("pause");
     return 0;
 }
