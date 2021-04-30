@@ -81,7 +81,7 @@ void findPath() {
 int main()
 {
     ifstream InputFile("input.txt");
-    if (InputFile.fail()) cout << "Can not open file or file exists!";
+    if (!InputFile.is_open()) cout << "Can not open file or file exists!";
     else {
         InputFile >> n;
         for (int i = 1; i <= n; i++) {

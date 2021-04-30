@@ -144,7 +144,7 @@ void eulerianGraph() {                  //Check the graph
 int main()
 {
     std::ifstream InputFile("input.txt");
-    if (InputFile.fail()) std::cout << "Can not open file!";
+    if (!InputFile.is_open()) std::cout << "Can not open file!";
     else {
         InputFile >> n;
         init();

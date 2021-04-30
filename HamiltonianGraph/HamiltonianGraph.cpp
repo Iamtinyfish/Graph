@@ -59,7 +59,7 @@ int main()
 {
     int HeadVetex;
     std::ifstream InputFile("input.txt");
-    if (InputFile.fail()) std::cout << "Can not open file!";
+    if (!InputFile.is_open()) std::cout << "Can not open file!";
     else {
         InputFile >> n;
         for (int i = 1; i <= n; ++i) {
